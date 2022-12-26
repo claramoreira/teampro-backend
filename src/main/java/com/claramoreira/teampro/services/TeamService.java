@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.claramoreira.teampro.domain.Team;
+import com.claramoreira.teampro.exceptions.ObjectNotFoundException;
 import com.claramoreira.teampro.repositories.TeamRepository;
 
 @Service
@@ -21,7 +22,7 @@ public class TeamService {
 
 	public Team findById(Integer id) {
 		Optional<Team> obj = repository.findById(id);
-		return obj.orElseThrow();
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
 	}
 
 }
