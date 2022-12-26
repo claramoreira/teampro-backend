@@ -1,4 +1,4 @@
-package com.claramoreira.teampro.controller;
+package com.claramoreira.teampro.controllers;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.claramoreira.teampro.entities.User;
+import com.claramoreira.teampro.domain.User;
 import com.claramoreira.teampro.services.UserService;
 
 @RestController

@@ -8,7 +8,7 @@ import javax.management.AttributeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.claramoreira.teampro.entities.User;
+import com.claramoreira.teampro.domain.User;
 import com.claramoreira.teampro.repositories.UserRepository;
 
 @Service
