@@ -4,58 +4,69 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.Id;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.Table;
 
+import com.claramoreira.teampro.domain.pk.EnrollmentPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "enrollments")
 public class Enrollment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private Integer id;
-	private Integer userId;
-	private Integer teamId;
+	@EmbeddedId
+	private EnrollmentPK id; 
+
+	@ManyToOne
+    @MapsId("user")
+	private User user;
+
+	@ManyToOne
+    @MapsId("team")
+	@JsonIgnore
+	private Team team;
+
 	private Integer status;
 	private Integer position;
 	private Date startDate;
 	private Date endDate;
 
 	public Enrollment() {
+
 	}
 
-	public Enrollment(Integer id, Integer userId, Integer teamId, Integer status, Integer position, Date startDate,
+	public Enrollment(User user, Team team, Integer status, Integer position, Date startDate,
 			Date endDate) {
 		super();
-		this.id = id;
-		this.userId = userId;
-		this.teamId = teamId;
+		this.id = new EnrollmentPK(user.getId(), team.getId());;
+		this.user = user;
+		this.team = team;
 		this.status = status;
 		this.position = position;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
 
-	public Integer getId() {
-		return id;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public Team getTeam() {
+		return team;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	public Integer getTeamId() {
-		return teamId;
-	}
-
-	public void setTeamId(Integer teamId) {
-		this.teamId = teamId;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 
 	public Integer getStatus() {
