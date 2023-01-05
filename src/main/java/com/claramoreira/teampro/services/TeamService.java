@@ -25,4 +25,9 @@ public class TeamService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
 	}
 
+	public List<Team> findByUser(Integer userId) {
+		List<Team> list = repository.findByUser(userId);
+		return list;
+	}
+
 }

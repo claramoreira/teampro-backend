@@ -12,11 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NaturalIdCache;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
-@Table(name = "teams")
-@NaturalIdCache
+@Entity 
+@Table(name="teams")
 public class Team implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,6 +27,7 @@ public class Team implements Serializable {
 	private String name;
 
 	@OneToMany(mappedBy = "team")
+	@JsonIgnore
 	private List<Enrollment> enrollments = new ArrayList<>();;
 
 	public Team() {
