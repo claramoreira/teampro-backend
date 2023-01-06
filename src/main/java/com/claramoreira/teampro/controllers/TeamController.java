@@ -36,7 +36,6 @@ public class TeamController {
 
 	@GetMapping(value= "/users/{id}")
 	public ResponseEntity<List<Team>> findByUser(@PathVariable Integer id) throws AttributeNotFoundException {
-		System.out.println("Im here");
 		List<Team> list = service.findByUser(id);
 		return ResponseEntity.ok().body(list);
 	}

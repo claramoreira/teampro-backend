@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.claramoreira.teampro.domain.Team;
 import com.claramoreira.teampro.domain.User;
 import com.claramoreira.teampro.services.UserService;
 
@@ -31,6 +32,12 @@ public class UserController {
 	public ResponseEntity<User> findById(@PathVariable Integer id) throws AttributeNotFoundException {
 		User obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
+	}
+
+	@GetMapping(value = "/teams/{id}")
+	public ResponseEntity<List<User>> findByUser(@PathVariable Integer id) throws AttributeNotFoundException {
+		List<User> list = service.findByTeam(id);
+		return ResponseEntity.ok().body(list);
 	}
 
 }
